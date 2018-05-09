@@ -29,7 +29,7 @@ public class Informacja  implements java.io.Serializable {
 
 
      private Long idInformacja;
-      
+     private String nadawca;  
      private Dzialki dzialki;
      private Integer nrInformacji;
      private Integer rokRozliczeniowy;
@@ -43,8 +43,9 @@ public class Informacja  implements java.io.Serializable {
     public Informacja(Long idInformacja) {
         this.idInformacja = idInformacja;
     }
-    public Informacja(Long idInformacja, Dzialki dzialki, Integer nrInformacji, Integer rokRozliczeniowy, Double stanRozliczenia, String informacja) {
+    public Informacja(Long idInformacja,String nadawca, Dzialki dzialki, Integer nrInformacji, Integer rokRozliczeniowy, Double stanRozliczenia, String informacja) {
        this.idInformacja = idInformacja;
+       this.nadawca = nadawca;
        this.dzialki = dzialki;
        this.nrInformacji = nrInformacji;
        this.rokRozliczeniowy = rokRozliczeniowy;
@@ -70,6 +71,15 @@ public class Informacja  implements java.io.Serializable {
         this.idInformacja = idInformacja;
     }
 
+        @Column(name="nadawca", length=5, nullable=false)
+    public String getNadawca() {
+        return this.nadawca;
+    }
+    
+    public void setNadawca(String nadawca) {
+        this.nadawca = nadawca;
+    }
+    
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="nr_dzialki")
     public Dzialki getDzialki() {
