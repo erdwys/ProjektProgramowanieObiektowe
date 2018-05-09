@@ -259,6 +259,8 @@ File selectedFile = fileChooser.getSelectedFile();
                             informacja.setInformacja(wiadomosc);
                             System.out.println("wiadomosc :" + wiadomosc);
                         }
+                    
+                        informacja.setNadawca("ADMIN");
 
                         impinformacja.add(informacja);
                     } else {
