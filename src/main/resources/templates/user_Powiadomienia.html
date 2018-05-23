@@ -10,28 +10,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" media="all" href="../css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="../css/editor.dataTables.min.css" th:href="@{/css/editor.dataTables.min.css}" />
-
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
-
-    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
-
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
- <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
- <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
- 
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
     <style>
         .display {
             padding-left: 8px;
@@ -65,30 +43,36 @@
         a.previous, a.next {
             background-color: #8d9dad;
         }
-        div.DTED_Lightbox_Wrapper {
-        width: 600px;
-        margin-left: -300px;
-    }
-    div.DTE div.DTE_Body div.DTE_Field {
-        padding-top: 5px
-    }
-    div.DTE div.DTE_Body div.DTE_Field > label {
-        float: none;
-        clear: both;
-        width: 100%;
-    }
-    div.DTE div.DTE_Body div.DTE_Field > div.DTE_Field_Input {
-        float: none;
-        clear: both;
-        width: 100%;
-    }
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.2.5/css/select.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="../css/editor.dataTables.min.css" th:href="@{/css/editor.dataTables.min.css}" />
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+ <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+ <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+ 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body class="fixed-nav">
     <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
         <a class="navbar-brand" th:href="@{/user}">Panel Użytkownika</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,13 +80,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" th:href="@{/user}">Start</a>
+                <a class="nav-item nav-link " th:href="@{/user}">Start</a>
                 <a class="nav-item nav-link" th:href="@{/user_Rozrachunki}">Rozrachunki</a>
-                <a class="nav-item nav-link" th:href="@{/user_Zobowiazania}">Zobowiązania</a>
-                    <a class="nav-item nav-link" th:href="@{/user_Powiadomienia}">Powiadomienia</a>
+                <a class="nav-item nav-link " th:href="@{/user_Zobowiazania}">Zobowiązania</a>
+                    <a class="nav-item nav-link active" th:href="@{/user_Powiadomienia}">Powiadomienia</a>
                 <a class="nav-item nav-link" th:href="@{/user_bank}">Konto bankowe</a>
                 <a class="nav-item nav-link" th:href="@{/user_licznik}">Odczyt liczników</a>
-                <a class="nav-item nav-link active" th:href="@{/user_konto}">Konto</a>
+                <a class="nav-item nav-link" th:href="@{/user_konto}">Konto</a>
 
                 <a class="item nav-link" th:href="@{/login?logout}" onclick="$('#form').submit();"> Wyloguj </a>
             </div>
@@ -110,23 +94,39 @@
         </div>
     </nav>
     <div class="container col-xs-12 col-sm-12 col-lg-12 mt-5">
-        <table id="user_konto_Table" class="display compact" width="100%" cellspacing="0" >
+
+        <table id="user_powiadomienia_Table" class="display col-lg-12 compact" width="100%" cellspacing="0" >
             <!-- Header Table -->
             <thead class="display headAndFooter">
                 <tr>
-                    <th>Login</th>
-                    <th>Hasło</th>
+                   <th>Id informacji</th>
+                    <th>Nr informacji</th>
+                      <th>Rok rozliczeniowy</th>
+                    <th>Stan rozliczenia</th>
+                    <th>Informacja</th>
                 </tr>
             </thead>
-        </table>
 
+            <!-- Footer Table -->
+            <tfoot class="display headAndFooter">
+                <tr>
+                      <th>Id informacji</th>                   
+                    <th>Nr informacji</th>
+                      <th>Rok rozliczeniowy</th>
+                    <th>Stan rozliczenia</th>
+                    <th>Informacja</th>
+                </tr>
+            </tfoot>
+        </table>
         <script src="/jQuery-2.1.4.min.js"></script>
         <script src="/jquery.dataTables.js"></script>
         <script src="/dataTables.bootstrap.min.js"></script>
         <script src="/jquery.spring-friendly.js"></script>
         <script src="../../js/dataTables.editor.min.js"></script>
 
-        <script src="../../js/user_konto.js"></script>
+        <script src="../../js/user_Powiadomienia.js"></script>
+
     </div>
+
 </body>
 </html>

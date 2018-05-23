@@ -224,7 +224,7 @@ $('#admin_zarz_powiadomienia_Table').on( 'click', 'tbody td:not(:first-child)', 
         "serverSide": false,
           "deferRender": true,
             stateSave: true,
-        "sAjaxSource": "/admin_zarz_powiadomienia/Adminget",
+        "sAjaxSource": "/admin_zarz_powiadomienia/Userget",
         "sAjaxDataProp": "",
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Polish.json",

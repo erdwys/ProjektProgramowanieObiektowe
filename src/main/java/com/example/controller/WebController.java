@@ -52,6 +52,10 @@ public class WebController {
     public String admin_zarz_user(){
         return "admin_zarz_user";
     }
+      @RequestMapping(value="/admin_zarz_powiadomienia")
+    public String admin_zarz_powiadomienia(){
+        return "admin_zarz_powiadomienia";
+    }
          @RequestMapping(value="/admin_zarz_dzialka")
     public String admin_zarz_dzialka(){
         return "admin_zarz_dzialka";
@@ -118,6 +122,10 @@ public class WebController {
         return "user_licznik";
     }
     
+      @RequestMapping(value="/user_Powiadomienia")
+    public String user_powiadomienia(){
+        return "user_Powiadomienia";
+    }
           @RequestMapping(value="/user_konto")
     public String user_konto(){
         return "user_konto";

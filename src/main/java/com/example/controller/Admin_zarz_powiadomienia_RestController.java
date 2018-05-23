@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.Admin_zarz_powiadomienia_Service;
+import java.util.ArrayList;
 
 @RestController
 public class Admin_zarz_powiadomienia_RestController {
@@ -27,6 +28,34 @@ public class Admin_zarz_powiadomienia_RestController {
 	public Iterable<Informacja> getAllDzialkowicz(){
 		return admin_zarz_powiadomieniaService.getAllAdmin_zarz_powiadomienia();
 	}
+        
+        @RequestMapping(path="/admin_zarz_powiadomienia/Adminget", method=RequestMethod.GET)
+	public Iterable<Informacja> getAdminAllDzialkowicz(){
+           Iterable powiadomienia = admin_zarz_powiadomieniaService.getAllAdmin_zarz_powiadomienia();
+           ArrayList<Informacja> listaPowiadomien = new ArrayList();                 
+ 
+           for(Object info : powiadomienia) {
+             listaPowiadomien.add((Informacja) info);
+             }
+            listaPowiadomien.stream().filter((info) -> (info.getNadawca().equals("USER"))).forEachOrdered((info) -> {
+                listaPowiadomien.remove(info);
+            });
+		return listaPowiadomien;
+	}
+        
+        @RequestMapping(path="/admin_zarz_powiadomienia/Userget", method=RequestMethod.GET)
+	public Iterable<Informacja> getUserAllDzialkowicz(){
+         Iterable powiadomienia = admin_zarz_powiadomieniaService.getAllAdmin_zarz_powiadomienia();
+           ArrayList<Informacja> listaPowiadomien = new ArrayList();          
+            for(Object info : powiadomienia) {
+             listaPowiadomien.add((Informacja) info);
+             }
+            listaPowiadomien.stream().filter((info) -> (info.getNadawca().equals("ADMIN"))).forEachOrdered((info) -> {
+                listaPowiadomien.remove(info);
+            });
+		return listaPowiadomien;
+	}
+        
     @RequestMapping(value = "/admin_zarz_powiadomienia/get/{id}", method = RequestMethod.GET)
 	public Informacja getDzialkowiczById(@PathVariable("id") long id){
 		return admin_zarz_powiadomieniaService.getAdmin_zarz_powiadomieniaById(id);
