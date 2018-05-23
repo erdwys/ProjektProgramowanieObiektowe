@@ -100,7 +100,16 @@
         clear: both;
         width: 100%;
     }
-
+    h4
+    {
+         border-top: 2px solid #8d9dad;
+         border-bottom: 2px solid #8d9dad;
+           margin-top: 20px;
+    position: relative;
+    text-align: center;
+        
+    }
+    
         </style>
 
 
@@ -130,6 +139,9 @@
             <form style="visibility: hidden" id="form" method="post" th:action="@{/logout}"></form>
         </div>
     </nav>
+    <h4 class="text-center">Powiadomienia od Użytkowników</h4>
+    
+    
     <div class="container col-xs-12 col-sm-12 col-lg-12  mt-5">
 
         <table id="admin_zarz_powiadomienia_Table" class="display compact" cellspacing="0" width="100%">

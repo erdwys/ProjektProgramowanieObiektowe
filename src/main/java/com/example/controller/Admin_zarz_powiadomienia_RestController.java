@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.Admin_zarz_powiadomienia_Service;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Optional;
 
 @RestController
 public class Admin_zarz_powiadomienia_RestController {
@@ -47,12 +49,20 @@ public class Admin_zarz_powiadomienia_RestController {
 	public Iterable<Informacja> getUserAllDzialkowicz(){
          Iterable powiadomienia = admin_zarz_powiadomieniaService.getAllAdmin_zarz_powiadomienia();
            ArrayList<Informacja> listaPowiadomien = new ArrayList();          
-            for(Object info : powiadomienia) {
+           
+        
+     
+           
+           for(Object info : powiadomienia) {
              listaPowiadomien.add((Informacja) info);
              }
-            listaPowiadomien.stream().filter((info) -> (info.getNadawca().equals("ADMIN"))).forEachOrdered((info) -> {
-                listaPowiadomien.remove(info);
-            });
+              while(listaPowiadomien.size()>0)
+        {
+            if(listaPowiadomien.get(listaPowiadomien.size()-1).getNadawca().equals("ADMIN"))
+              listaPowiadomien.remove(listaPowiadomien.size()-1);
+            
+        }
+            
 		return listaPowiadomien;
 	}
         
