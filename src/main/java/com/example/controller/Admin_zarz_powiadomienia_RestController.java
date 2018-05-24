@@ -81,6 +81,17 @@ public Informacja save(@RequestBody Informacja informacja){
      return  admin_zarz_powiadomieniaService.saveAdmin_zarz_powiadomienia(informacja);
  
 }
+         
+        @RequestMapping(value = "/send_Form", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public Informacja send_Form(@RequestBody Informacja informacja){
+ 
+  
+ 
+     return  admin_zarz_powiadomieniaService.saveAdmin_zarz_powiadomienia(informacja);
+ 
+}
+
+
  @RequestMapping(value = "/admin_zarz_powiadomienia/update",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Informacja update(@RequestBody Informacja informacja){
    

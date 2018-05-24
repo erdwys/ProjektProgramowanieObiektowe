@@ -130,6 +130,10 @@ public class WebController {
     public String user_konto(){
         return "user_konto";
     }
+           @RequestMapping(value="/user_kontakt")
+    public String user_kontakt(){
+        return "user_kontakt";
+    }
   
     @RequestMapping(value={"/login"})
     public String login(){
