@@ -39,7 +39,7 @@ public class Dzialki  implements java.io.Serializable {
      private Integer powierzchnia;
 @JsonProperty(access = Access.WRITE_ONLY)
      private Set<OdczytLicznika> odczytLicznikas = new HashSet<OdczytLicznika>(0);
-  
+    @JsonProperty(access = Access.WRITE_ONLY)
      private Set<Informacja> informacjas = new HashSet<Informacja>(0);
        
      private Iban iban;

@@ -34,7 +34,7 @@ public class User_zobowiazania_RestController {
     @Autowired
     private User_zobowiazania_Service user_zobowiazania_Service;
     Dzialkowicz dzialkowiczLog = new Dzialkowicz();
-
+ 
     @RequestMapping(path = "/user_zobowiazania/get", method = RequestMethod.GET)
     public Iterable<Zobowiazania> getAllDzialkowicz(HttpServletRequest arg0, HttpServletResponse arg1,
             Authentication authentication) {

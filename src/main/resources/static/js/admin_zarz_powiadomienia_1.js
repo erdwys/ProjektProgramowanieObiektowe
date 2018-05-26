@@ -30,7 +30,6 @@ $(document).ready(function () {
                 orderable: false
             },
             {data: "idInformacja"},
-                {data: "nadawca"},
             {data: "dzialki",
                 render: function (data, type, full) {
                     if (data.nrDzialki !== undefined) {
@@ -42,7 +41,6 @@ $(document).ready(function () {
                 }},         
             {data: "nrInformacji"},
             {data: "rokRozliczeniowy"},
-            {data: "stanRozliczenia"},
             {data: "informacja"}
         ],
 order: [ 1, 'asc' ],

@@ -35,6 +35,8 @@ public class User_powiadomienia_RestController {
 
     @Autowired
     private User_powiadomienia_Service user_powiadomienia_Service;
+    
+    
     Dzialkowicz dzialkowiczLog = new Dzialkowicz();
 
     @RequestMapping(path = "/user_powiadomienia/Adminget", method = RequestMethod.GET)
@@ -84,5 +86,34 @@ public class User_powiadomienia_RestController {
     }
     
     
-   
+     @RequestMapping(path = "/user_powiadomienia/UsergetId", method = RequestMethod.GET)
+    public Iterable<Informacja> getUserAllDzialkowiczId(Authentication authentication) {
+        Iterable powiadomienia = user_powiadomienia_Service.getAllUser_powiadomienia();
+        ArrayList<Informacja> listaPowiadomien = new ArrayList();
+        ArrayList<Informacja> listaPowiadomienUsers = new ArrayList();
+       
+        Dostep dostep = new Dostep();
+        ImplDostep impdostep = new ImplDostep();
+        dostep = impdostep.getByLogin(authentication.getName());
+        ImplDzialkowicz impldzialkowicz = new ImplDzialkowicz();
+        Dzialkowicz dzialkowiczLog = new Dzialkowicz();
+        dzialkowiczLog = impldzialkowicz.getById(dostep.getNrDzialkowicza());
+        Dzialki dzialki = new Dzialki();
+        ImplDzialki impldzialki = new ImplDzialki();
+        dzialki = impldzialki.getByIdDzialkowicz(dzialkowiczLog.getNrDzialkowicza());
+        
+        for (Object info : powiadomienia) {
+            listaPowiadomien.add((Informacja) info);
+        }
+        for(int i = 0; i < listaPowiadomien.size() ; i++) {
+            if (listaPowiadomien.get(i).getDzialki().getNrDzialki().equals(dzialki.getNrDzialki()) && (listaPowiadomien.get(i).getNadawca().equals("USER"))) {
+                listaPowiadomienUsers.add(listaPowiadomien.get(i));
+            }
+
+        }
+
+        return listaPowiadomienUsers;
+    }
+
+    
 }
