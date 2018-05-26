@@ -14,6 +14,7 @@ import com.example.model.imp.ImplDzialkowicz;
 import com.example.model.Dzialkowicz;
 import com.example.model.imp.ImplDostep;
 import com.example.model.imp.ImplDzialki;
+import com.example.service.Admin_zarz_powiadomienia_Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -24,17 +25,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-
+import org.springframework.web.bind.annotation.RequestBody;
+import com.example.model.Informacja;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 @Controller
 public class WebController {
    
-
+@Autowired
+    private Admin_zarz_powiadomienia_Service admin_zarz_powiadomieniaService;
 
     
     @RequestMapping(value={"/","home"})
@@ -51,6 +57,10 @@ public class WebController {
      @RequestMapping(value="/admin_zarz_user")
     public String admin_zarz_user(){
         return "admin_zarz_user";
+    }
+      @RequestMapping(value="/admin_zarz_powiadomienia")
+    public String admin_zarz_powiadomienia(){
+        return "admin_zarz_powiadomienia";
     }
          @RequestMapping(value="/admin_zarz_dzialka")
     public String admin_zarz_dzialka(){
@@ -118,9 +128,58 @@ public class WebController {
         return "user_licznik";
     }
     
+      @RequestMapping(value="/user_Powiadomienia")
+    public String user_powiadomienia(){
+        return "user_Powiadomienia";
+    }
           @RequestMapping(value="/user_konto")
     public String user_konto(){
         return "user_konto";
+    }
+           @RequestMapping(value="/user_kontakt")
+    public String user_kontakt(){
+        return "user_kontakt";
+    }
+    
+    
+          @RequestMapping(value="/user_kontakt_historia")
+    public String user_kontakt_historia(){
+        return "user_kontakt_historia";
+    }
+    
+    @RequestMapping(value = "/send_Form", method = RequestMethod.POST)
+    public String send_Form(@RequestBody String string, Authentication authentication) {
+
+        Dostep dostep = new Dostep();
+        ImplDostep impdostep = new ImplDostep();
+        dostep = impdostep.getByLogin(authentication.getName());
+        ImplDzialkowicz impldzialkowicz = new ImplDzialkowicz();
+        Dzialkowicz dzialkowiczLog = new Dzialkowicz();
+        dzialkowiczLog = impldzialkowicz.getById(dostep.getNrDzialkowicza());
+        Dzialki dzialki = new Dzialki();
+        ImplDzialki impldzialki = new ImplDzialki();
+        dzialki = impldzialki.getByIdDzialkowicz(dzialkowiczLog.getNrDzialkowicza());
+
+        Iterable<Informacja> informacje = admin_zarz_powiadomieniaService.getAllAdmin_zarz_powiadomienia();
+        ArrayList<Informacja> listaInformacji = new ArrayList();
+        ArrayList<Informacja> listaInformacjiDotDzialki = new ArrayList();
+
+        for (Object info : informacje) {
+            listaInformacji.add((Informacja) info);
+        }
+        for (int i = 0; i < listaInformacji.size(); i++) {
+            if (listaInformacji.get(i).getDzialki().getNrDzialki().equals(dzialki.getNrDzialki())) {
+                listaInformacjiDotDzialki.add(listaInformacji.get(i));
+            }
+        }
+
+        String[] infoFormat = string.split("=|\r");
+
+        Informacja wiadomosc = new Informacja(Long.MIN_VALUE, "USER", dzialki, listaInformacjiDotDzialki.size(), Calendar.getInstance().get(Calendar.YEAR), 0D, "Data otrzymania: " + LocalDateTime.now().format(DateTimeFormatter.ISO_DATE) + ", Nadawca: " + infoFormat[1] + ", Tytuł wiadomości: " + infoFormat[3] + ", Treść wiadomości: " + infoFormat[5] + "");
+    admin_zarz_powiadomieniaService.saveAdmin_zarz_powiadomienia(wiadomosc);
+        
+        return "user_kontakt";
+
     }
   
     @RequestMapping(value={"/login"})

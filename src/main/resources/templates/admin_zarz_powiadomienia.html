@@ -100,16 +100,7 @@
         clear: both;
         width: 100%;
     }
-    h4
-    {
-         border-top: 2px solid #8d9dad;
-         border-bottom: 2px solid #8d9dad;
-           margin-top: 20px;
-    position: relative;
-    text-align: center;
-        
-    }
-    
+
         </style>
 
 
@@ -123,8 +114,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" th:href="@{/admin}">Start</a>
-                 <a class="nav-item nav-link" th:href="@{/admin_zarz_powiadomienia}">Zarz. powiadomieniami</a>
+                <a class="nav-item nav-link " th:href="@{/admin}">Start</a>
+                 <a class="nav-item nav-link active" th:href="@{/admin_zarz_powiadomienia}">Zarz. powiadomieniami</a>
                 <a class="nav-item nav-link" th:href="@{/admin_zarz_user}">Zarz. użytkownikami</a>
                 <a class="nav-item nav-link" th:href="@{/admin_zarz_dzialka}">Zarz. działkami</a>
                 <a class="nav-item nav-link" th:href="@{/admin_zarz_dostep}">Zarz. dostepem</a>
@@ -139,9 +130,6 @@
             <form style="visibility: hidden" id="form" method="post" th:action="@{/logout}"></form>
         </div>
     </nav>
-    <h4 class="text-center">Powiadomienia od Użytkowników</h4>
-    
-    
     <div class="container col-xs-12 col-sm-12 col-lg-12  mt-5">
 
         <table id="admin_zarz_powiadomienia_Table" class="display compact" cellspacing="0" width="100%">
@@ -151,9 +139,11 @@
                 <tr>
                      <th></th>
                     <th>Id informacji</th>
+                    <th>Nadawca</th>
                     <th>Nr dzialki</th>
                     <th>Nr informacji</th>
                    <th>Rok rozliczeniowy</th>
+                    <th>Stan rozliczenia</th>
                     <th>Informacja</th>
                 </tr>
             </thead>
@@ -163,9 +153,11 @@
                 <tr>
                      <th></th>
                   <th>Id informacji</th>
+                    <th>Nadawca</th>
                     <th>Nr dzialki</th>
                     <th>Nr informacji</th>
                       <th>Rok rozliczeniowy</th>
+                    <th>Stan rozliczenia</th>
                     <th>Informacja</th>
                  </tr>
             </tfoot>
@@ -177,7 +169,7 @@
     <script src="/jquery.spring-friendly.js"></script>
 
     <script src="../../js/dataTables.editor.min.js"></script>
-    <script src="../../js/admin_zarz_powiadomienia_1.js"></script>
+    <script src="../../js/admin_zarz_powiadomienia.js"></script>
 
 
 

@@ -88,6 +88,7 @@ CREATE SEQUENCE Informacja_id_seq;
 CREATE TABLE Informacja
 (
   "id_informacja" INTEGER DEFAULT NEXTVAL('Informacja_id_seq')  NOT NULL,
+  "nadawca" character varying(5) NOT NULL,
   "nr_dzialki" integer,
   "nr_informacji" integer,
   "rok_rozliczeniowy" integer,
