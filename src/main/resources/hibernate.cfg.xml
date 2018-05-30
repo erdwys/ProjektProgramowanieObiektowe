@@ -43,9 +43,10 @@ Contributor(s):
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
- <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
-    <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">123</property><mapping class="com.example.model.AktualizacjaDanych"/>
+  <property name="hibernate.connection.url">jdbc:postgresql://ec2-79-125-127-60.eu-west-1.compute.amazonaws.com:5432/dckqdg5981rspt?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory</property>
+        <property name="hibernate.connection.username">fasszuseeuticr</property>
+        <property name="hibernate.connection.password">434eef88fd5cb0d3b42d5958d571d438749cdc3656aa1238757568f7ae1e84e2</property>
+        <mapping class="com.example.model.AktualizacjaDanych"/>
         <mapping class="com.example.model.Dzialki"/>
         <mapping class="com.example.model.Dostep"/>
         <mapping class="com.example.model.Zobowiazania"/>
