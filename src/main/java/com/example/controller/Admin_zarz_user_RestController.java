@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.Admin_zarz_user_Service;
+import java.util.ArrayList;
+import java.util.Collections;
 
 @RestController
 public class Admin_zarz_user_RestController {
@@ -27,6 +29,26 @@ public class Admin_zarz_user_RestController {
 	public Iterable<Dzialkowicz> getAllDzialkowicz(){
 		return admin_zarz_userService.getAllAdmin_zarz_user();
 	}
+        
+          @RequestMapping(path="/admin_zarz_user/getID", method=RequestMethod.GET)
+	public ArrayList<Long> getAllIDDzialkowicz(){
+            Iterable<Dzialkowicz> dzialkowicze = admin_zarz_userService.getAllAdmin_zarz_user();
+           ArrayList<Dzialkowicz> listaDzialkowiczow = new ArrayList();
+            ArrayList<Long> listaDzialowiczyID = new ArrayList(); 
+                      
+                for (Object dzialkowicz : dzialkowicze) {
+            listaDzialkowiczow.add((Dzialkowicz) dzialkowicz);
+        }
+                  for (Dzialkowicz dzialkowicz : listaDzialkowiczow) {                 
+                  listaDzialowiczyID.add(dzialkowicz.getNrDzialkowicza());
+                      
+                  }
+                  Collections.sort(listaDzialowiczyID);
+            
+		return listaDzialowiczyID;
+	}
+        
+        
     @RequestMapping(value = "/admin_zarz_user/get/{id}", method = RequestMethod.GET)
 	public Dzialkowicz getDzialkowiczById(@PathVariable("id") long id){
 		return admin_zarz_userService.getAdmin_zarz_userById(id);
@@ -36,8 +58,19 @@ public class Admin_zarz_user_RestController {
          
         @RequestMapping(value = "/admin_zarz_user/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public Dzialkowicz save(@RequestBody Dzialkowicz dzialkowicz){
- 
-  
+          Iterable<Dzialkowicz> dzialkowicze = admin_zarz_userService.getAllAdmin_zarz_user();
+           ArrayList<Dzialkowicz> listaDzialkowiczy= new ArrayList();
+                ArrayList<Long> listaDzialowiczyID = new ArrayList(); 
+                      
+                for (Object dzialko : dzialkowicze) {
+            listaDzialkowiczy.add((Dzialkowicz) dzialko);
+        }
+                  for (Dzialkowicz dzialko : listaDzialkowiczy) {                 
+                  listaDzialowiczyID.add(dzialko.getNrDzialkowicza());
+                      
+                  }
+               
+  dzialkowicz.setNrDzialkowicza( Collections.max(listaDzialowiczyID)+1);
  
      return  admin_zarz_userService.saveAdmin_zarz_user(dzialkowicz);
  

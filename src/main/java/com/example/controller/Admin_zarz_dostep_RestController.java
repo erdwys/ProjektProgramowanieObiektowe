@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.Admin_zarz_dostep_Service;
+import java.util.ArrayList;
 
 @RestController
 public class Admin_zarz_dostep_RestController {
@@ -44,8 +45,10 @@ public Dostep save(@RequestBody Dostep dostep){
 }
  @RequestMapping(value = "/admin_zarz_dostep/update",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Dostep update(@RequestBody Dostep dostep){
-         Dostep dostep1 = dostep; 
+    
+       Dostep dostep1 = dostep; 
   this.admin_zarz_dostepService.deleteAdmin_zarz_dostep(dostep.getDzialkowicz().getNrDzialkowicza());
+  
      return  admin_zarz_dostepService.saveAdmin_zarz_dostep(dostep1);
  
 }

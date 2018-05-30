@@ -6,6 +6,28 @@ $(document).ready(function () {
         attach: 'head'
     } );
 
+  var optionsA = [];
+$.getJSON("/admin_zarz_user/getID", {
+        term: "-1"
+    },
+    function(data) {
+        var option = {};
+        $.each(data, function(i, e) {
+            option.label = e;
+            option.value = e;
+            optionsA.push(option);
+            option = {};
+        });
+    }
+).done(function() {
+  
+  
+  
+    editor.field('dzialkowicz.nrDzialkowicza').update(optionsA);
+});
+     
+
+
     editor = new $.fn.dataTable.Editor({
      display: 'envelope',
          ajax: {
@@ -94,7 +116,8 @@ $(document).ready(function () {
         idSrc: "dzialkowicz.nrDzialkowicza",
         "fields": [{
                 "label": "Nr dzialkowicza",
-                "name": "dzialkowicz.nrDzialkowicza"
+                "name": "dzialkowicz.nrDzialkowicza",
+                 type:  "select"
             }, {
                 "label": "login",
                 "name": "login"

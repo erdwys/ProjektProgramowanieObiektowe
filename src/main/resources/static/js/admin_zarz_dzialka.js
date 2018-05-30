@@ -5,6 +5,25 @@ $(document).ready(function () {
   $.extend( $.fn.dataTable.Editor.display.envelope.conf, {
         attach: 'head'
     } );
+    
+    var optionsA = [];
+$.getJSON("/admin_zarz_user/getID", {
+        term: "-1"
+    },
+    function(data) {
+        var option = {};
+        $.each(data, function(i, e) {
+            option.label = e;
+            option.value = e;
+            optionsA.push(option);
+            option = {};
+        });
+    }
+).done(function() {
+  
+    editor.field('dzialkowicz.nrDzialkowicza').update(optionsA);
+});
+     
 
     editor = new $.fn.dataTable.Editor({
      display: 'envelope',
@@ -21,6 +40,7 @@ $(document).ready(function () {
                         obj = d.data[key];
                         break;
                     }
+                        obj["nrDzialki"] = 0;
                     return JSON.stringify(obj);
                 },
 
@@ -104,7 +124,8 @@ $(document).ready(function () {
                 "name": "powierzchnia"
             }, {
                 "label": "Nr członkowski",
-                "name": "dzialkowicz.nrDzialkowicza"
+                "name": "dzialkowicz.nrDzialkowicza",
+                 "type": "select"
             }
         ],
         i18n: {
@@ -139,6 +160,8 @@ $(document).ready(function () {
         } );
     } );
 
+  editor.field('nrDzialki')
+            .disable();
 
     editor.on('preSubmit', function (e, o, action) {
 
@@ -159,7 +182,7 @@ $(document).ready(function () {
             }
             if (!dzialkowicz.isMultiValue()) {
                 if (!dzialkowicz.val()) {
-                    dzialkowicz.error('Proszę podać numer działkowicza');
+                    dzialkowicz.error('Proszę podać numer działkowicza, w przypadku braku możliwosci wyboru dodaj najpierw nowego dzialkowicza');
                 } else {
                     if (!isNumber(dzialkowicz.val())) {
                         dzialkowicz.error('Proszę podać poprawny numer działkowicza');
