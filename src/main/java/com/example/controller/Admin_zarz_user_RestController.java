@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.Admin_zarz_user_Service;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @RestController
 public class Admin_zarz_user_RestController {
@@ -38,12 +39,11 @@ public class Admin_zarz_user_RestController {
                 for (Object dzialkowicz : dzialkowicze) {
             listaDzialkowiczow.add((Dzialkowicz) dzialkowicz);
         }
-                  for (Dzialkowicz dzialkowicz : listaDzialkowiczow) {
-                      if(dzialkowicz.getDzialkis().isEmpty())
+                  for (Dzialkowicz dzialkowicz : listaDzialkowiczow) {                 
                   listaDzialowiczyID.add(dzialkowicz.getNrDzialkowicza());
                       
                   }
-                  
+                  Collections.sort(listaDzialowiczyID);
             
 		return listaDzialowiczyID;
 	}
@@ -60,12 +60,17 @@ public class Admin_zarz_user_RestController {
 public Dzialkowicz save(@RequestBody Dzialkowicz dzialkowicz){
           Iterable<Dzialkowicz> dzialkowicze = admin_zarz_userService.getAllAdmin_zarz_user();
            ArrayList<Dzialkowicz> listaDzialkowiczy= new ArrayList();
-     
-        for (Object info : dzialkowicze) {
-            listaDzialkowiczy.add((Dzialkowicz) info);
+                ArrayList<Long> listaDzialowiczyID = new ArrayList(); 
+                      
+                for (Object dzialko : dzialkowicze) {
+            listaDzialkowiczy.add((Dzialkowicz) dzialko);
         }
-       
-  dzialkowicz.setNrDzialkowicza( listaDzialkowiczy.get(listaDzialkowiczy.size()-1).getNrDzialkowicza()+1);
+                  for (Dzialkowicz dzialko : listaDzialkowiczy) {                 
+                  listaDzialowiczyID.add(dzialko.getNrDzialkowicza());
+                      
+                  }
+               
+  dzialkowicz.setNrDzialkowicza( Collections.max(listaDzialowiczyID)+1);
  
      return  admin_zarz_userService.saveAdmin_zarz_user(dzialkowicz);
  

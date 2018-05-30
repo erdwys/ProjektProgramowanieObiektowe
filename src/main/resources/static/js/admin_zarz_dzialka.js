@@ -125,7 +125,7 @@ $.getJSON("/admin_zarz_user/getID", {
             }, {
                 "label": "Nr członkowski",
                 "name": "dzialkowicz.nrDzialkowicza",
-                 "type": "select",
+                 "type": "select"
             }
         ],
         i18n: {
