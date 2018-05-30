@@ -29,6 +29,25 @@ public class Admin_zarz_dzialka_RestController {
 	public Iterable<Dzialki> getAllDzialkowicz(){
 		return admin_zarz_dzialkaService.getAllAdmin_zarz_dzialka();
 	}
+        
+        @RequestMapping(path="/admin_zarz_dzialka/getID", method=RequestMethod.GET)
+	public ArrayList<Long> getAllIDDzialkowicz(){
+            Iterable<Dzialki> dzialki =  admin_zarz_dzialkaService.getAllAdmin_zarz_dzialka();
+           ArrayList<Dzialki> listaDzialek = new ArrayList();
+            ArrayList<Long> listaDzialekID = new ArrayList(); 
+                      
+                for (Object dzialka : dzialki) {
+            listaDzialek.add((Dzialki) dzialka);
+        }
+                  for (Dzialki dzialka : listaDzialek) {
+                  listaDzialekID.add(dzialka.getNrDzialki());
+                      
+                  }
+                  
+            
+		return listaDzialekID;
+	}
+        
     @RequestMapping(value = "/admin_zarz_dzialka/get/{id}", method = RequestMethod.GET)
 	public Dzialki getDzialkowiczById(@PathVariable("id") long id){
 		return admin_zarz_dzialkaService.getAdmin_zarz_dzialkaById(id);

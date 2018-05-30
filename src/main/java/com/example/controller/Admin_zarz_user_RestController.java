@@ -28,6 +28,27 @@ public class Admin_zarz_user_RestController {
 	public Iterable<Dzialkowicz> getAllDzialkowicz(){
 		return admin_zarz_userService.getAllAdmin_zarz_user();
 	}
+        
+          @RequestMapping(path="/admin_zarz_user/getID", method=RequestMethod.GET)
+	public ArrayList<Long> getAllIDDzialkowicz(){
+            Iterable<Dzialkowicz> dzialkowicze = admin_zarz_userService.getAllAdmin_zarz_user();
+           ArrayList<Dzialkowicz> listaDzialkowiczow = new ArrayList();
+            ArrayList<Long> listaDzialowiczyID = new ArrayList(); 
+                      
+                for (Object dzialkowicz : dzialkowicze) {
+            listaDzialkowiczow.add((Dzialkowicz) dzialkowicz);
+        }
+                  for (Dzialkowicz dzialkowicz : listaDzialkowiczow) {
+                      if(dzialkowicz.getDzialkis().isEmpty())
+                  listaDzialowiczyID.add(dzialkowicz.getNrDzialkowicza());
+                      
+                  }
+                  
+            
+		return listaDzialowiczyID;
+	}
+        
+        
     @RequestMapping(value = "/admin_zarz_user/get/{id}", method = RequestMethod.GET)
 	public Dzialkowicz getDzialkowiczById(@PathVariable("id") long id){
 		return admin_zarz_userService.getAdmin_zarz_userById(id);
