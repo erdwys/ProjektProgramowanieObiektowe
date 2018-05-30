@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.Admin_zarz_user_Service;
+import java.util.ArrayList;
 
 @RestController
 public class Admin_zarz_user_RestController {
@@ -36,8 +37,14 @@ public class Admin_zarz_user_RestController {
          
         @RequestMapping(value = "/admin_zarz_user/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public Dzialkowicz save(@RequestBody Dzialkowicz dzialkowicz){
- 
-  
+          Iterable<Dzialkowicz> dzialkowicze = admin_zarz_userService.getAllAdmin_zarz_user();
+           ArrayList<Dzialkowicz> listaDzialkowiczy= new ArrayList();
+     
+        for (Object info : dzialkowicze) {
+            listaDzialkowiczy.add((Dzialkowicz) info);
+        }
+       
+  dzialkowicz.setNrDzialkowicza( listaDzialkowiczy.get(listaDzialkowiczy.size()-1).getNrDzialkowicza()+1);
  
      return  admin_zarz_userService.saveAdmin_zarz_user(dzialkowicz);
  

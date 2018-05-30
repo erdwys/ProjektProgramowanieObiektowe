@@ -21,6 +21,7 @@ $(document).ready(function () {
                         obj = d.data[key];
                         break;
                     }
+                           obj["nrDzialkowicza"] = 0;
                     return JSON.stringify(obj);
                 },
                 success: function (data) {
@@ -166,7 +167,8 @@ $(document).ready(function () {
     } );
 
 
-    
+     editor.field('nrDzialkowicza')
+            .disable();
 
     editor.on('preSubmit', function (e, o, action) {
 
