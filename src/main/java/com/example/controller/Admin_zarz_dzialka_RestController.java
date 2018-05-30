@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.service.Admin_zarz_dzialka_Service;
+import java.util.ArrayList;
 
 @RestController
 public class Admin_zarz_dzialka_RestController {
@@ -36,9 +37,18 @@ public class Admin_zarz_dzialka_RestController {
 
          
         @RequestMapping(value = "/admin_zarz_dzialka/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-public Dzialki save(@RequestBody Dzialki dzialki){
+public Dzialki save(@RequestBody Dzialki dzialka){
  
-     return  admin_zarz_dzialkaService.saveAdmin_zarz_dzialka(dzialki);
+       Iterable<Dzialki> dzialki =  admin_zarz_dzialkaService.getAllAdmin_zarz_dzialka();
+           ArrayList<Dzialki> listaDzialek = new ArrayList();
+     
+        for (Object info : dzialki) {
+            listaDzialek.add((Dzialki) info);
+        }
+       
+  dzialka.setNrDzialki(listaDzialek.get(listaDzialek.size()-1).getNrDzialki()+1);
+ 
+     return  admin_zarz_dzialkaService.saveAdmin_zarz_dzialka(dzialka);
  
 }
  @RequestMapping(value = "/admin_zarz_dzialka/update",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)

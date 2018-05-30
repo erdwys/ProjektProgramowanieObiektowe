@@ -21,6 +21,7 @@ $(document).ready(function () {
                         obj = d.data[key];
                         break;
                     }
+                        obj["nrDzialki"] = 0;
                     return JSON.stringify(obj);
                 },
 
@@ -139,6 +140,8 @@ $(document).ready(function () {
         } );
     } );
 
+  editor.field('nrDzialki')
+            .disable();
 
     editor.on('preSubmit', function (e, o, action) {
 
